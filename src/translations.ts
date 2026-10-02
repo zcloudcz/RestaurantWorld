@@ -1,0 +1,100 @@
+const keys = [
+  "Orders",
+  "Supplies",
+  "Network",
+  "Table",
+  "Stockroom",
+  "Preparation",
+  "Cooking",
+  "Drinks",
+  "Plating",
+  "Dishwashing",
+  "Clean plates",
+  "Dirty dishes",
+  "Preparing",
+  "Eating",
+  "Bill",
+  "Ready",
+  "Reserved",
+  "Served",
+  "Missing ingredients",
+  "Cancel order",
+  "Delivery on its way",
+  "Storage capacity",
+  "Available",
+  "Order delivery",
+  "Hire",
+  "Fire",
+  "Cook",
+  "Waiter",
+  "Bartender",
+  "Dishwasher",
+  "Porter",
+  "Wages per minute",
+  "Recruitment fee",
+  "Employee slots",
+  "Current branch",
+  "Close for new guests",
+  "Open restaurant",
+  "Meal",
+  "Drink",
+  "Buy ingredients",
+];
+const rows: Record<string, string> = {
+  sk: "Objednávky|Zásoby|Sieť|Stôl|Sklad|Príprava|Varenie|Nápoje|Servírovanie|Umývanie riadu|Čisté taniere|Špinavý riad|Pripravuje sa|Je|Účet|Hotové|Rezervované|Podané|Chýbajú suroviny|Zrušiť objednávku|Dodávka je na ceste|Kapacita skladu|Dostupné|Objednať dodávku|Najať|Prepustiť|Kuchár|Čašník|Barman|Umývač riadu|Skladník|Mzdy za minútu|Cena náboru|Miesta v tíme|Aktuálna pobočka|Zavrieť pre nových hostí|Otvoriť reštauráciu|Jedlo|Nápoj|Kúpiť suroviny",
+  de: "Bestellungen|Vorräte|Filialnetz|Tisch|Lager|Vorbereitung|Kochen|Getränke|Anrichten|Spülen|Saubere Teller|Schmutziges Geschirr|In Zubereitung|Beim Essen|Rechnung|Fertig|Reserviert|Serviert|Zutaten fehlen|Bestellung stornieren|Lieferung unterwegs|Lagerkapazität|Verfügbar|Lieferung bestellen|Einstellen|Entlassen|Koch|Kellner|Barkeeper|Spüler|Lagerist|Löhne pro Minute|Einstellungskosten|Personalplätze|Aktuelle Filiale|Für neue Gäste schließen|Restaurant öffnen|Gericht|Getränk|Zutaten kaufen",
+  fr: "Commandes|Stocks|Réseau|Table|Réserve|Préparation|Cuisson|Boissons|Dressage|Vaisselle|Assiettes propres|Vaisselle sale|En préparation|À table|Addition|Prêt|Réservé|Servi|Ingrédients manquants|Annuler la commande|Livraison en route|Capacité du stock|Disponible|Commander une livraison|Embaucher|Licencier|Cuisinier|Serveur|Barman|Plongeur|Magasinier|Salaires par minute|Frais de recrutement|Places dans l’équipe|Restaurant actuel|Fermer aux nouveaux clients|Ouvrir le restaurant|Plat|Boisson|Acheter des ingrédients",
+  es: "Pedidos|Existencias|Red|Mesa|Almacén|Preparación|Cocción|Bebidas|Emplatado|Lavado|Platos limpios|Vajilla sucia|Preparando|Comiendo|Cuenta|Listo|Reservado|Servido|Faltan ingredientes|Cancelar pedido|Entrega en camino|Capacidad del almacén|Disponible|Pedir entrega|Contratar|Despedir|Cocinero|Camarero|Barman|Lavaplatos|Mozo de almacén|Salarios por minuto|Coste de contratación|Plazas del equipo|Sucursal actual|Cerrar a nuevos clientes|Abrir restaurante|Plato|Bebida|Comprar ingredientes",
+  it: "Ordini|Scorte|Rete|Tavolo|Magazzino|Preparazione|Cottura|Bevande|Impiattamento|Lavaggio|Piatti puliti|Piatti sporchi|In preparazione|Sta mangiando|Conto|Pronto|Riservato|Servito|Ingredienti mancanti|Annulla ordine|Consegna in arrivo|Capacità del magazzino|Disponibile|Ordina consegna|Assumi|Licenzia|Cuoco|Cameriere|Barista|Lavapiatti|Magazziniere|Stipendi al minuto|Costo di assunzione|Posti nel personale|Filiale attuale|Chiudi ai nuovi ospiti|Apri ristorante|Piatto|Bevanda|Acquista ingredienti",
+  pt: "Pedidos|Stock|Rede|Mesa|Armazém|Preparação|Cozedura|Bebidas|Empratamento|Lavagem|Pratos limpos|Louça suja|A preparar|A comer|Conta|Pronto|Reservado|Servido|Faltam ingredientes|Cancelar pedido|Entrega a caminho|Capacidade do armazém|Disponível|Pedir entrega|Contratar|Despedir|Cozinheiro|Empregado de mesa|Barman|Lava-louça|Armazenista|Salários por minuto|Custo de contratação|Vagas da equipa|Filial atual|Fechar a novos clientes|Abrir restaurante|Prato|Bebida|Comprar ingredientes",
+  pl: "Zamówienia|Zapasy|Sieć|Stół|Magazyn|Przygotowanie|Gotowanie|Napoje|Nakładanie|Zmywanie|Czyste talerze|Brudne naczynia|W przygotowaniu|Je|Rachunek|Gotowe|Zarezerwowane|Podane|Brak składników|Anuluj zamówienie|Dostawa w drodze|Pojemność magazynu|Dostępne|Zamów dostawę|Zatrudnij|Zwolnij|Kucharz|Kelner|Barman|Zmywacz|Magazynier|Płace na minutę|Koszt zatrudnienia|Miejsca w zespole|Obecny lokal|Zamknij dla nowych gości|Otwórz restaurację|Danie|Napój|Kup składniki",
+  nl: "Bestellingen|Voorraad|Netwerk|Tafel|Magazijn|Voorbereiding|Koken|Dranken|Opmaak|Afwassen|Schone borden|Vuile vaat|In bereiding|Aan het eten|Rekening|Klaar|Gereserveerd|Geserveerd|Ingrediënten ontbreken|Bestelling annuleren|Levering onderweg|Opslagcapaciteit|Beschikbaar|Levering bestellen|Aannemen|Ontslaan|Kok|Ober|Barman|Afwasser|Magazijnier|Lonen per minuut|Wervingskosten|Personeelsplaatsen|Huidige vestiging|Sluiten voor nieuwe gasten|Restaurant openen|Gerecht|Drank|Ingrediënten kopen",
+  uk: "Замовлення|Запаси|Мережа|Стіл|Склад|Підготовка|Готування|Напої|Сервірування|Миття посуду|Чисті тарілки|Брудний посуд|Готується|Їсть|Рахунок|Готово|Зарезервовано|Подано|Бракує інгредієнтів|Скасувати замовлення|Доставка в дорозі|Місткість складу|Доступно|Замовити доставку|Найняти|Звільнити|Кухар|Офіціант|Бармен|Мийник посуду|Комірник|Зарплати за хвилину|Вартість найму|Місця в команді|Поточний заклад|Закрити для нових гостей|Відкрити ресторан|Страва|Напій|Купити інгредієнти",
+  ru: "Заказы|Запасы|Сеть|Стол|Склад|Подготовка|Приготовление|Напитки|Подача|Мытьё посуды|Чистые тарелки|Грязная посуда|Готовится|Ест|Счёт|Готово|Зарезервировано|Подано|Не хватает ингредиентов|Отменить заказ|Доставка в пути|Вместимость склада|Доступно|Заказать доставку|Нанять|Уволить|Повар|Официант|Бармен|Мойщик посуды|Кладовщик|Зарплаты в минуту|Стоимость найма|Места в команде|Текущий филиал|Закрыть для новых гостей|Открыть ресторан|Блюдо|Напиток|Купить ингредиенты",
+  ro: "Comenzi|Stocuri|Rețea|Masă|Depozit|Pregătire|Gătit|Băuturi|Montare|Spălare|Farfurii curate|Vase murdare|Se pregătește|Mănâncă|Notă|Gata|Rezervat|Servit|Lipsesc ingrediente|Anulează comanda|Livrare pe drum|Capacitatea depozitului|Disponibil|Comandă livrare|Angajează|Concediază|Bucătar|Ospătar|Barman|Spălător de vase|Magazioner|Salarii pe minut|Cost de recrutare|Locuri în echipă|Filiala curentă|Închide pentru clienți noi|Deschide restaurantul|Preparat|Băutură|Cumpără ingrediente",
+  hu: "Rendelések|Készletek|Hálózat|Asztal|Raktár|Előkészítés|Főzés|Italok|Tálalás|Mosogatás|Tiszta tányérok|Piszkos edények|Készül|Eszik|Számla|Kész|Lefoglalva|Felszolgálva|Hiányzó hozzávalók|Rendelés törlése|Szállítás úton|Raktárkapacitás|Elérhető|Szállítás rendelése|Felvétel|Elbocsátás|Szakács|Pincér|Pultos|Mosogató|Raktáros|Bér percenként|Felvételi díj|Csapathelyek|Jelenlegi étterem|Bezárás új vendégeknek|Étterem nyitása|Étel|Ital|Hozzávalók vásárlása",
+  tr: "Siparişler|Stoklar|Ağ|Masa|Depo|Hazırlık|Pişirme|İçecekler|Tabaklama|Bulaşık|Temiz tabaklar|Kirli bulaşıklar|Hazırlanıyor|Yemek yiyor|Hesap|Hazır|Ayrıldı|Servis edildi|Eksik malzeme|Siparişi iptal et|Teslimat yolda|Depo kapasitesi|Mevcut|Teslimat siparişi|İşe al|İşten çıkar|Aşçı|Garson|Barmen|Bulaşıkçı|Depocu|Dakikalık ücretler|İşe alım ücreti|Personel yerleri|Mevcut şube|Yeni müşterilere kapat|Restoranı aç|Yemek|İçecek|Malzeme satın al",
+  zh: "订单|库存|连锁|餐桌|仓库|备料|烹饪|饮品|装盘|洗碗|干净餐盘|脏餐具|制作中|用餐中|账单|完成|已预留|已上桌|缺少食材|取消订单|配送途中|仓库容量|可用|订购配送|雇用|解雇|厨师|服务员|调饮师|洗碗工|仓管员|每分钟工资|招聘费用|员工名额|当前分店|停止接待新客|开店|菜品|饮品|购买食材",
+  ja: "注文|在庫|店舗網|テーブル|倉庫|下準備|調理|飲み物|盛り付け|食器洗い|きれいな皿|汚れた食器|調理中|食事中|会計|完成|確保済み|提供済み|材料不足|注文を取消|配送中|倉庫容量|利用可能|配送を注文|雇う|解雇|料理人|ウェイター|バーテンダー|皿洗い係|倉庫係|毎分の賃金|採用費|従業員枠|現在の支店|新規客の受付終了|開店|料理|飲み物|材料を購入",
+  ko: "주문|재고|매장망|테이블|창고|준비|조리|음료|플레이팅|설거지|깨끗한 접시|더러운 식기|준비 중|식사 중|계산서|완료|예약됨|제공됨|재료 부족|주문 취소|배송 중|창고 용량|사용 가능|배송 주문|고용|해고|요리사|웨이터|바텐더|설거지 담당|창고 직원|분당 임금|채용 비용|직원 자리|현재 지점|새 손님 접수 종료|식당 열기|요리|음료|재료 구매",
+  ar: "الطلبات|المخزون|الشبكة|الطاولة|المستودع|التحضير|الطهي|المشروبات|التقديم|غسل الصحون|صحون نظيفة|أطباق متسخة|قيد التحضير|يتناول الطعام|الحساب|جاهز|محجوز|تم التقديم|مكونات ناقصة|إلغاء الطلب|التوصيل في الطريق|سعة المستودع|متاح|طلب توصيل|توظيف|فصل|طاهٍ|نادل|محضر مشروبات|غاسل صحون|أمين مخزن|الأجور في الدقيقة|رسوم التوظيف|أماكن الموظفين|الفرع الحالي|إغلاق أمام ضيوف جدد|فتح المطعم|وجبة|مشروب|شراء المكونات",
+  hi: "ऑर्डर|भंडार|नेटवर्क|मेज़|गोदाम|तैयारी|पकाना|पेय|परोसना|बर्तन धोना|साफ प्लेटें|गंदे बर्तन|तैयार हो रहा है|खा रहे हैं|बिल|तैयार|आरक्षित|परोसा गया|सामग्री कम है|ऑर्डर रद्द करें|डिलीवरी रास्ते में|भंडारण क्षमता|उपलब्ध|डिलीवरी मँगाएँ|नियुक्त करें|हटाएँ|रसोइया|वेटर|बारटेंडर|बर्तन धोने वाला|गोदाम कर्मचारी|प्रति मिनट वेतन|भर्ती शुल्क|कर्मचारी स्थान|वर्तमान शाखा|नए मेहमानों के लिए बंद करें|रेस्तराँ खोलें|भोजन|पेय|सामग्री खरीदें",
+};
+export const extraLocales: Record<string, Record<string, string>> = {};
+for (const [lang, row] of Object.entries(rows)) {
+  const values = row.split("|");
+  if (values.length !== keys.length)
+    throw new Error(`World locale ${lang}: ${values.length}/${keys.length}`);
+  extraLocales[lang] = Object.fromEntries(
+    keys.map((key, i) => [key, values[i]]),
+  );
+}
+const rescueRows: Record<string, string> = {
+  sk: "Dlh za suroviny|Núdzové suroviny|Požičať balíček|Požičaj si malý balíček. Cena sa splatí z budúcich tržieb.",
+  de: "Zutatenschulden|Notfallzutaten|Paket leihen|Leihe ein kleines Paket. Die Kosten werden aus künftigen Einnahmen zurückgezahlt.",
+  fr: "Dette de fournitures|Ingrédients de secours|Emprunter un lot|Emprunte un petit lot. Son coût sera remboursé avec les ventes futures.",
+  es: "Deuda de ingredientes|Ingredientes de emergencia|Pedir lote prestado|Pide un pequeño lote. Su coste se devuelve con las ventas futuras.",
+  it: "Debito per ingredienti|Ingredienti di emergenza|Prendi un kit a credito|Prendi un piccolo kit. Il costo verrà rimborsato con le vendite future.",
+  pt: "Dívida de ingredientes|Ingredientes de emergência|Pedir lote a crédito|Pede um pequeno lote. O custo será pago com as vendas futuras.",
+  pl: "Dług za składniki|Awaryjne składniki|Pożycz zestaw|Pożycz mały zestaw. Koszt zostanie spłacony z przyszłej sprzedaży.",
+  nl: "Ingrediëntenschuld|Noodingrediënten|Pakket lenen|Leen een klein pakket. De kosten worden uit toekomstige omzet betaald.",
+  uk: "Борг за інгредієнти|Аварійні інгредієнти|Позичити набір|Позич невеликий набір. Його вартість погашається з майбутніх продажів.",
+  ru: "Долг за ингредиенты|Аварийные ингредиенты|Взять набор в долг|Возьми небольшой набор. Его стоимость погашается из будущих продаж.",
+  ro: "Datorie pentru ingrediente|Ingrediente de urgență|Împrumută un pachet|Împrumută un pachet mic. Costul se rambursează din vânzările viitoare.",
+  hu: "Hozzávalótartozás|Sürgősségi hozzávalók|Csomag kölcsönzése|Kérj egy kis csomagot. Az árát a későbbi bevételből fizeted vissza.",
+  tr: "Malzeme borcu|Acil malzemeler|Paket ödünç al|Küçük bir paket al. Bedeli gelecekteki satışlardan ödenir.",
+  zh: "食材欠款|应急食材|借用食材包|借用一小包食材，费用将从未来销售收入中偿还。",
+  ja: "材料の借入残高|緊急材料|材料セットを借りる|小さなセットを借ります。費用は今後の売上から返済されます。",
+  ko: "재료 부채|긴급 재료|재료 묶음 빌리기|작은 묶음을 빌리세요. 비용은 향후 매출에서 상환됩니다.",
+  ar: "دين المكونات|مكونات للطوارئ|اقتراض حزمة|اقترض حزمة صغيرة. تُسدد تكلفتها من المبيعات المستقبلية.",
+  hi: "सामग्री का कर्ज़|आपातकालीन सामग्री|सामग्री उधार लें|एक छोटा पैक उधार लें। लागत भविष्य की बिक्री से चुकाई जाएगी।",
+};
+for (const [lang, row] of Object.entries(rescueRows)) {
+  const values = row.split("|");
+  [
+    "Supply debt",
+    "Emergency ingredients",
+    "Borrow kit",
+    "Borrow a small kit. Its cost is repaid from future sales.",
+  ].forEach((key, i) => (extraLocales[lang][key] = values[i]));
+}

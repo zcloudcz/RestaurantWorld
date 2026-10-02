@@ -1,0 +1,135 @@
+import { extraLocales } from "./translations";
+import { translate, type Locale } from "../../RestaurantCommon/src/ui/i18n";
+import type { Text } from "../../CommonAdvanced/src/types";
+const cs: Record<string, string> = {
+  "Supply debt": "Dluh za suroviny",
+  "Emergency ingredients": "Nouzové suroviny",
+  "Borrow kit": "Vypůjčit balíček",
+  "Borrow a small kit. Its cost is repaid from future sales.":
+    "Vypůjč si malý balíček. Jeho cena se splatí z budoucích tržeb.",
+  "A table for everyone": "Místo u stolu pro každého",
+  Orders: "Objednávky",
+  Supplies: "Zásoby",
+  Team: "Tým",
+  Expand: "Rozšířit",
+  Network: "Síť",
+  Table: "Stůl",
+  Stockroom: "Sklad",
+  Preparation: "Příprava",
+  Cooking: "Vaření",
+  Drinks: "Nápoje",
+  Plating: "Kompletace",
+  Dishwashing: "Mytí nádobí",
+  "Clean plates": "Čisté talíře",
+  "Empty tray": "Prázdný tác",
+  "Dirty dishes": "Špinavé nádobí",
+  "Work in progress": "Rozpracované jídlo",
+  "Waiting for an order": "Čeká na objednávku",
+  Preparing: "Připravuje se",
+  Eating: "Jí",
+  Bill: "Účet",
+  "Clear the table": "Uklidit stůl",
+  "Go to table": "Dojít ke stolu",
+  "Collect ingredients": "Vyzvedni suroviny",
+  "Prepare ingredients": "Připrav suroviny",
+  "Cook the meal": "Uvař jídlo",
+  "Prepare the drink": "Připrav nápoj",
+  "Plate the meal": "Nandej jídlo na talíř",
+  "Serve the table": "Obsluž stůl",
+  "Wash the dishes": "Umyj nádobí",
+  "Welcome your guests": "Přivítej hosty",
+  "Your next task": "Tvůj další úkol",
+  "Select a ticket, then follow the kitchen steps.":
+    "Vyber objednávku a projdi kroky v kuchyni.",
+  "No guests yet. Your first table will arrive shortly.":
+    "Zatím žádní hosté. První stůl brzy přijde.",
+  "Selected order": "Vybraná objednávka",
+  Ready: "Hotovo",
+  Reserved: "Rezervováno",
+  Served: "Podáno",
+  "Missing ingredients": "Chybí suroviny",
+  "Cancel order": "Zrušit objednávku",
+  "Delivery on its way": "Dodávka je na cestě",
+  "Collect delivery at the stockroom.": "Dodávku převezmi ve skladu.",
+  "Buy ingredients": "Nakoupit suroviny",
+  "Storage capacity": "Kapacita skladu",
+  Available: "K dispozici",
+  "Order delivery": "Objednat dodávku",
+  "Delivery takes 12 seconds. Pay once when ordering.":
+    "Dodání trvá 12 sekund. Platíš jednou při objednání.",
+  Hire: "Najmout",
+  Fire: "Propustit",
+  Cook: "Kuchař",
+  Waiter: "Číšník",
+  Bartender: "Barman",
+  Dishwasher: "Myč nádobí",
+  Porter: "Skladník",
+  "Wages per minute": "Mzdy za minutu",
+  "Recruitment fee": "Cena náboru",
+  "Employee slots": "Místa v týmu",
+  "Unpaid wages": "Dlužné mzdy",
+  "Staff keep working on credit. Firing does not erase debt.":
+    "Tým pokračuje na dluh. Propuštění nesmaže dlužné mzdy.",
+  "Choose your next improvement": "Vyber další rozšíření",
+  "Both choices stay available until purchased.":
+    "Obě možnosti zůstanou dostupné do zakoupení.",
+  "Restaurant complete": "Restaurace dokončena",
+  Visit: "Navštívit",
+  "Open branch": "Otevřít pobočku",
+  "Current branch": "Aktuální pobočka",
+  Branch: "Pobočka",
+  "Choose a cuisine for the next branch": "Vyber kuchyni nové pobočky",
+  "Finish the previous restaurant first.":
+    "Nejprve dokonči předchozí restauraci.",
+  "New branches start from zero. Your wallet is shared.":
+    "Nové pobočky začínají od nuly. Pokladna je společná.",
+  City: "Město",
+  Country: "Země",
+  World: "Svět",
+  Settings: "Nastavení",
+  Language: "Jazyk",
+  "Export save": "Exportovat pozici",
+  "Import save": "Importovat pozici",
+  "Reset progress": "Smazat postup",
+  "Start over?": "Začít znovu?",
+  "This deletes only Restaurant World progress.":
+    "Smaže se pouze postup Restaurant World.",
+  Cancel: "Zpět",
+  "Confirm reset": "Potvrdit smazání",
+  Sound: "Zvuk",
+  Pause: "Pauza",
+  Continue: "Pokračovat",
+  "Open for guests": "Otevřeno pro hosty",
+  "Close for new guests": "Zavřít pro nové hosty",
+  "Open restaurant": "Otevřít restauraci",
+  "Not enough funds or capacity.": "Nedostatek peněz nebo kapacity.",
+  Saved: "Uloženo",
+  "Could not save. Export a backup.": "Nelze uložit. Exportuj zálohu.",
+  "Invalid save. Original data preserved.":
+    "Neplatná pozice. Původní data jsou zachována.",
+  "Progress restored.": "Postup obnoven.",
+  "Welcome to your bistro": "Vítej ve svém bistru",
+  "Walk to a table to take an order. Collect ingredients, prepare, cook and plate. Serve food and drinks, collect the bill and wash the plates.":
+    "Dojdi ke stolu a převezmi objednávku. Vyzvedni suroviny, připrav je, uvař a nandej na talíř. Dones jídlo i nápoj, vyber účet a umyj nádobí.",
+  "Let’s cook": "Jdeme vařit",
+  "Tap a label to walk there. WASD, arrows or drag to move.":
+    "Klepni na štítek a dojdi k cíli. Pohyb WASD, šipkami nebo tažením.",
+  "Map overview": "Přehled mapy",
+  Help: "Nápověda",
+  min: "min",
+  Complete: "Hotovo",
+  Meal: "Jídlo",
+  Drink: "Nápoj",
+  Buy: "Koupit",
+  Income: "Tržby",
+  "All improvements purchased. Visit your network to open a new branch.":
+    "Všechna rozšíření jsou hotová. V síti můžeš otevřít novou pobočku.",
+};
+export const worldStrings = cs;
+export function tr(key: string, lang: Locale): string {
+  return lang === "cs"
+    ? (cs[key] ?? translate(key, lang))
+    : (extraLocales[lang]?.[key] ?? translate(key, lang));
+}
+export const local = (value: Text, lang: Locale) =>
+  lang === "cs" ? value.cs : tr(value.en, lang);
